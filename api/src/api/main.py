@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import re
 import shutil
 from pathlib import Path
+from model.model import calcular_media_diaria_por_regiao
 
 app = FastAPI(
     title="API Simples",
@@ -187,6 +188,13 @@ async def download_status():
         "download_directory": str(DOWNLOAD_DIR),
         "files": files
     }
+
+@app.get("/geracao_por_regiao", tags=["Geracao por Regiao"])
+async def geracao_por_regiao():
+    """
+    Endpoint para obter a geração de energia por região.
+    """
+    return calcular_media_diaria_por_regiao()
 
 if __name__ == "__main__":
     import uvicorn
