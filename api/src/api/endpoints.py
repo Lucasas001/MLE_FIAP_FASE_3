@@ -1,4 +1,5 @@
 import os
+import aiohttp
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from src.services.sync_service import get_download_links
 from src.services.download_service import download_all_files
@@ -11,13 +12,29 @@ geolocator = Nominatim(user_agent="mle_tech_challenge_three")
 @router.get("/geocode/{address}")
 async def geocode_address(address: str = None):
     """
-    Recebe um endereço como parâmetro e retorna a latitude e longitude.
+    Recebe um endereço e retorna latitude, longitude e altitude.
     """
     location = geolocator.geocode(address)
-    if location:
-        return {"latitude": location.latitude, "longitude": location.longitude}
-    else:
+    if not location:
         raise HTTPException(status_code=404, detail="Endereço não encontrado")
+
+    lat = location.latitude
+    lon = location.longitude
+
+    url = f"https://api.open-elevation.com/api/v1/lookup?locations={lat},{lon}"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            if response.status == 200:
+                data = await response.json()
+                elevation = data["results"][0]["elevation"]
+            else:
+                raise HTTPException(status_code=500, detail="Erro ao obter altitude")
+
+    return {
+        "latitude": lat,
+        "longitude": lon,
+        "altitude": elevation
+    }
 
 @router.get("/health", tags=["Status"])
 async def health_check():
