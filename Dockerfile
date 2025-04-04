@@ -15,9 +15,14 @@ COPY pyproject.toml poetry.lock* README.md entrypoint.sh ./
 
 COPY ./api/src/ src/
 
-RUN poetry config virtualenvs.create false && \
-    poetry install --no-interaction --no-ansi
+#RUN poetry config virtualenvs.create false && \
+#    poetry install --no-interaction --no-ansi
 
-EXPOSE 8080
+RUN poetry config virtualenvs.create false \
+    && poetry self add poetry-plugin-export \
+    && poetry install --no-interaction --no-ansi \
+    && rm -rf ~/.cache
+
+EXPOSE 8080 8501
 
 ENTRYPOINT ["/bin/sh", "entrypoint.sh"]

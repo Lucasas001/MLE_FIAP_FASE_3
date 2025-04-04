@@ -1,5 +1,10 @@
 import os
 import aiohttp
+import time
+import subprocess
+import threading
+import sys
+
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from src.services.sync_service import get_download_links
 from src.services.download_service import download_all_files
@@ -9,6 +14,23 @@ from geopy.geocoders import Nominatim
 
 router = APIRouter()
 geolocator = Nominatim(user_agent="mle_tech_challenge_three")
+
+streamlit_process = None
+
+@router.get("/streamlit")
+def start_streamlit():
+    global streamlit_process
+    if streamlit_process is None:
+        def run_streamlit():
+            subprocess.run([
+                "poetry", "run", "streamlit", "run", "/app/src/streamlit_app/streamlit_app.py",
+                "--server.port=8501", "--server.headless=true"
+            ])
+        thread = threading.Thread(target=run_streamlit)
+        thread.start()
+        time.sleep(5)
+        return {"message": "Streamlit started", "url": "http://localhost:8501"}
+    return {"message": "Streamlit already running", "url": "http://localhost:8501"}
 
 @router.get("/model/")
 async def get_model():
