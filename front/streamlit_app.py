@@ -1,10 +1,7 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import math
-import pickle
-from datetime import datetime
 import requests
 
 # Configuração da página
@@ -24,11 +21,11 @@ try:
     print(irradiacao_por_regiao)
 except Exception as e:
     irradiacao_por_regiao = {
-        "Norte": 5.5,
-        "Nordeste": 5.9,
-        "Centro-Oeste": 5.7,
-        "Sudeste": 5.5,
-        "Sul": 5.0
+        "Norte": 1.1,
+        "Nordeste": 1.2,
+        "Centro-Oeste": 1.3,
+        "Sudeste": 1.4,
+        "Sul": 1.5
     }
 
 # Criar layout com colunas
@@ -207,10 +204,19 @@ if st.button("Calcular Painéis Necessários", type="primary", use_container_wid
 
 # Adicionar informações extras na barra lateral
 with st.sidebar:
-    st.header("Sobre a Calculadora")
+    st.header("DESAFIO FASE 3 FIAP:")
+    st.header("Alunos:")
     st.markdown("""
-    Esta calculadora fornece uma estimativa do número de painéis solares 
-    necessários com base no seu consumo de energia e localização.
+    - Lucas Araújo
+    - Lucas Martins
+                """)
+    st.header("Sobre a Calculadora:")
+    st.markdown("""
+    **Alunos:**
+    - Lucas Araújo
+    - Lucas Martins
+                
+    Esta calculadora estima a quantidade de painéis solares necessária com base no seu consumo de energia e localização. Utiliza um modelo de regressão treinado com dados do INMET (2020 a 2024) para prever a incidência de radiação solar em cada região, convertendo esses valores para kWh/m²/dia.
     
     **Como funciona:**
     1. Insira seu consumo mensal de energia
@@ -262,4 +268,4 @@ with st.sidebar:
 
 # Rodapé
 st.markdown("---")
-st.markdown("Desenvolvido com Streamlit e Python | Calculadora de Painéis Solares")
+st.markdown("Desenvolvido com Streamlit e Python | Calculadora de Painéis Solares | Lucas Araújo e Lucas Martins")
