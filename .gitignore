@@ -1,1 +1,10 @@
 .idea/*
+estudo/files/*
+estudo/combined_dataset.csv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pywz
