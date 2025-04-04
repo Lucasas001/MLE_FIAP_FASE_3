@@ -4,10 +4,16 @@ from fastapi import APIRouter, HTTPException, BackgroundTasks
 from src.services.sync_service import get_download_links
 from src.services.download_service import download_all_files
 from src.core.config import DOWNLOAD_DIR
+from src.model.model import calcular_media_diaria_por_regiao
 from geopy.geocoders import Nominatim
 
 router = APIRouter()
 geolocator = Nominatim(user_agent="mle_tech_challenge_three")
+
+@router.get("/model/")
+async def get_model():
+    return calcular_media_diaria_por_regiao()
+
 
 @router.get("/geocode/{address}")
 async def geocode_address(address: str = None):
