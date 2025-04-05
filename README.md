@@ -33,6 +33,13 @@ src/
 └── tests/
 ```
 
+## Notebook de Estudo
+
+O notebook principal com a análise completa e desenvolvimento do modelo está disponível em:
+
+[estudo/files/main.ipynb](estudo/files/main.ipynb)
+
+
 ## Considerações Finais
 
 Neste estudo, desenvolvemos um modelo de previsão de radiação solar utilizando dados meteorológicos históricos do INMET.
