@@ -31,6 +31,7 @@ src/
 │ ├── main.py
 │ └── models.py
 └── tests/
+```
 
 ## Considerações Finais
 
