@@ -37,7 +37,7 @@ src/
 
 O notebook principal com a análise completa e desenvolvimento do modelo está disponível em:
 
-[estudo/files/main.ipynb](estudo/main.ipynb)
+[Notebook de Estudo](estudo/main.ipynb)
 
 
 ## Considerações Finais
