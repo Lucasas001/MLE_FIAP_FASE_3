@@ -15,9 +15,6 @@ COPY pyproject.toml poetry.lock* README.md entrypoint.sh ./
 
 COPY ./api/src/ src/
 
-#RUN poetry config virtualenvs.create false && \
-#    poetry install --no-interaction --no-ansi
-
 RUN poetry config virtualenvs.create false \
     && poetry self add poetry-plugin-export \
     && poetry install --no-interaction --no-ansi \
