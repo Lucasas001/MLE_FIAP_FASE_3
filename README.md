@@ -1,4 +1,41 @@
-Projeto de API com Poetry
+# TECH CHALLENGE FASE 03
+
+### Alunos:
+
+- Lucas Araújo
+- Lucas Martins
+
+### Etapas:
+
+- 1 - Criar uma API para fazer coleta dos dados do INMET
+- 2 - Criar um modelo de machine learning para prever a radiação solar
+- 3 - Criar uma aplicação web para dimensionar sistemas fotovoltaicos
+
+## API FastAPI
+
+Criamos uma API simples para fazer coleta dos dados do INMET, onde baixamos os dados das estações meteorológicas do INMET e salvamos localmente em formato CSV para ser utilizado no modelo de machine learning.
+
+**API REST**: Um endpoint que fornece previsões de radiação solar para todas as regiões do Brasil.
+   - **URL**: [http://34.44.229.246:8080/model/](http://34.44.229.246:8080/model/)
+
+## Notebook de Estudo
+
+O notebook principal com a análise completa e desenvolvimento do modelo está disponível em:
+
+[Notebook de Estudo](estudo/main.ipynb)
+
+
+## Deploy do Modelo e Aplicação Web
+
+O modelo desenvolvido neste estudo foi implementado em produção no GCP e está disponível através de:
+
+**Aplicação Web**: Uma calculadora de painéis solares que permite dimensionar sistemas fotovoltaicos com base nas previsões do modelo.
+   - **URL**: [http://34.44.229.246:8501/](http://34.44.229.246:8501/)
+
+Sinta-se à vontade para acessar e utilizar estas ferramentas.
+
+
+### Projeto de API com Poetry
 
 Este projeto é uma API simples gerenciada com [Poetry](https://python-poetry.org/), usando Python 3.13.
 
@@ -33,12 +70,6 @@ src/
 └── tests/
 ```
 
-## Notebook de Estudo
-
-O notebook principal com a análise completa e desenvolvimento do modelo está disponível em:
-
-[Notebook de Estudo](estudo/main.ipynb)
-
 
 ## Considerações Finais
 
@@ -61,16 +92,3 @@ Principais pontos do trabalho:
 7. **Aplicações Potenciais**: Este modelo pode ser utilizado para dimensionamento de sistemas fotovoltaicos, planejamento agrícola e estudos climáticos.
 
 Próximos passos incluem a implementação de modelos mais complexos como redes neurais e a integração com dados de satélite para melhorar a precisão das previsões.
-
-
-## Deploy do Modelo e Aplicação Web
-
-O modelo desenvolvido neste estudo foi implementado em produção no GCP e está disponível através de:
-
-1. **Aplicação Web**: Uma calculadora de painéis solares que permite dimensionar sistemas fotovoltaicos com base nas previsões do modelo.
-   - **URL**: [http://34.44.229.246:8501/](http://34.44.229.246:8501/)
-
-2. **API REST**: Um endpoint que fornece previsões de radiação solar para todas as regiões do Brasil.
-   - **URL**: [http://34.44.229.246:8080/model/](http://34.44.229.246:8080/model/)
-
-Sinta-se à vontade para acessar e utilizar estas ferramentas.
